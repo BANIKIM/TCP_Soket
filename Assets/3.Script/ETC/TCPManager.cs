@@ -29,6 +29,9 @@ public class TCPManager : MonoBehaviour
     public InputField Message_Box;
     private Message_Pooling message;
 
+
+    user_info info = SQL_Manager.instance.info;
+
     private Queue<string> log = new Queue<string>();
     void status_Message()
     {
@@ -138,19 +141,22 @@ public class TCPManager : MonoBehaviour
 
     public void Sending_btn()
     {
+        
         //만약 메세지를 보냈다면
         //내가 보낸 메세지도 message box에 넣을 것
         if(sending_Message(Message_Box.text))
         {
-            message.Message(Message_Box.text);
+            
+            message.Message(info.User_name + " : " + Message_Box.text);
             Message_Box.text = string.Empty;
         }
     }
     private bool sending_Message(string me)
     {
-        if(writer != null)
+        
+        if (writer != null)
         {
-            writer.WriteLine(me);
+            writer.WriteLine(info.User_name+" : " + me);
             return true;
         }
         else

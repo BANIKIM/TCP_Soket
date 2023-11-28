@@ -10,7 +10,7 @@ public class Message_Pooling : MonoBehaviour
     [SerializeField] private Text[] message_Box;
 
     public Action<string> Message;//
-
+    
     string current_me = string.Empty;
     string past_me;
 
@@ -48,7 +48,7 @@ public class Message_Pooling : MonoBehaviour
         }
         if(!isinput)
         {
-            for (int i = 0; i < message_Box.Length; i++)
+            for (int i = 1; i < message_Box.Length; i++)
             {
                 message_Box[i - 1].text = message_Box[i].text;
                 //미는작업
